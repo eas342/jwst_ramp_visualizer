@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+*.DS_Store
+*.pyc
+ramp_comparison.pdf
+ramp_example.pdf
+*.xlsx
+*~
