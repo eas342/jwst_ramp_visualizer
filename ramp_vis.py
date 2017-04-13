@@ -48,19 +48,25 @@ class multiaccum():
         y = np.mod(X,self.tint_total_ftime) * self.rate * self.ftime
         return y
     
-    def make_ramps(self):
-        """ Calculates X and Y coordinates of the ramps' resets, reads, drops etc."""
+    def make_ramps(self,idleshow=3):
+        """ Calculates X and Y coordinates of the ramps' resets, reads, drops etc.
+        Parameters
+        -----------
+        idleshow: int
+            How many idle resets to show before and after the multiaccum pattern
+        """
         ## All reads, resets, etc.
         self.x = np.arange(self.texp_total_ftime+1)
         self.y = self.find_yvals(self.x)
         
         ## Calculate the reset times
-        self.xresets = np.arange(self.nint+1) * self.tint_total_ftime
+        self.xresets = np.arange(self.nint) * self.tint_total_ftime
         self.yresets = self.find_yvals(self.xresets)
         
-        ## Add some resets at the beginning
-        self.xresets = np.concatenate((-1 - np.arange(3),self.xresets))
-        self.yresets = np.concatenate((np.zeros(3),self.yresets))
+        ## Add some resets at the beginning and the end
+        self.xresets = np.concatenate((-1 - np.arange(idleshow),self.xresets,
+                                      np.arange(idleshow)+self.texp_total_ftime))
+        self.yresets = np.concatenate((np.zeros(idleshow),self.yresets,np.zeros(idleshow)))
         
         ## Calculate the read frames, drop frames
         xgroup = np.arange(self.nf)
