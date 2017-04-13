@@ -1,5 +1,6 @@
 # JWST Ramp Visualizer
-Visualize MULTIACCUM Ramp Patterns for JWST
+Visualize MULTIACCUM Ramp Patterns for JWST.
+Note the many different possible modes: RAPID, BRIGHT1, BRIGHT2, SHALLOW2, SHALLOW4, MEDIUM2, MEDIUM8, DEEP2 and DEEP8.
 
 ## Usage
 The notebook `ramp_visualizer_usage.ipynb` shows example usage.
